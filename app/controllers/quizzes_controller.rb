@@ -4,6 +4,10 @@ class QuizzesController < ApplicationController
   # GET /quizzes or /quizzes.json
   def index
     @quizzes = Quiz.all
+
+    @title = "These are the quizzes"
+    @description = "Borem Lorem"
+
   end
 
   # GET /quizzes/1 or /quizzes/1.json
@@ -43,6 +47,19 @@ class QuizzesController < ApplicationController
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # START QUIZ /start_quiz
+  def start
+    @title = "Start some quizes"
+    @description = "BOREBOREMBOREM"
+  
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: { title: @title, description: @description }
       end
     end
   end
