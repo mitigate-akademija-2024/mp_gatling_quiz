@@ -5,7 +5,8 @@ class Quiz < ApplicationRecord
     before_validation :normalize_title
     before_save :normalize_description
 
-    has_many :questions
+    has_many :question
+    
 
     protected
 
@@ -16,6 +17,6 @@ class Quiz < ApplicationRecord
 
     def normalize_description
         Rails.logger.info("Quiz#normalize_description called")
-        self.description = self.description.squiish unless self.description.nil?
+        self.description = self.description.squish unless self.description.nil?
     end
 end
