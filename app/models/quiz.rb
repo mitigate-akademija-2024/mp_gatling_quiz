@@ -5,7 +5,7 @@ class Quiz < ApplicationRecord
     before_validation :normalize_title
     before_save :normalize_description
 
-    has_many :question
+    has_many :questions, dependent: :destroy
     
 
     protected

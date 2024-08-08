@@ -5,6 +5,6 @@ class Question < ApplicationRecord
         answer.where(:correct => true)
     end
 
-    has_many :answer
+    has_many :answers, dependent: :destroy
     belongs_to :quiz
 end
