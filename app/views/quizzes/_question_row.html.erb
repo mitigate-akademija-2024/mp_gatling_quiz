@@ -1,0 +1,6 @@
+<tr>
+  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900"><%= question.id %></td>
+  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-700"><%= question.question_text %></td>
+  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-700"><%= format_date question.created_at %></td>
+</tr>
+<%= render partial:'answer_row', collection: question.answers, as: :answer %>

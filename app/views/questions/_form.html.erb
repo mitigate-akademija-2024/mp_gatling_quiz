@@ -14,11 +14,16 @@
   <div>
     <%= form.label :question_text, style: "display: block" %>
     <%= form.text_field :question_text %>
+      <%= form.fields_for :answers do |ff|%>
+      <li>
+        <%= ff.label :answer_text %>
+        <%= ff.text_field :answer_text %>
+      </li>
+      <% end %>
   </div>
 
-
-
   <div>
+    <%= form.submit :add_answer %>
     <%= form.submit class: btn_class %>
   </div>
 <% end %>
