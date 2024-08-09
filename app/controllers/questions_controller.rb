@@ -32,20 +32,16 @@ class QuestionsController < ApplicationController
 
   def update
 
-    if params[:commit] == "add_answer"
-      @question.answers.new 
-      render :edit, status: :unprocessable_entity  
-    else
-      respond_to do |format|
-          if @question.update(question_params)
-            format.html { redirect_to question_url(@question), notice: "Question was successfully updated." }
-            format.json { render :show, status: :ok, location: @question }
-          else
-            format.html { render :edit, status: :unprocessable_entity }
-            format.json { render json: @question.errors, status: :unprocessable_entity }
-          end
-        end
+    respond_to do |format|
+      if @question.update(question_params)
+        format.html { redirect_to question_url(@question), notice: "Question was successfully updated." }
+        format.json { render :show, status: :ok, location: @question }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @question.errors, status: :unprocessable_entity }
+      end
     end
+    
   end
 
   def destroy
@@ -65,6 +61,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:question_text, answers_attributes: [:id, :answer_text, :correct, :delete])
+    params.require(:question).permit(:question_text, answers_attributes: [:id, :answer_text, :correct, :_destroy])
   end
 end
