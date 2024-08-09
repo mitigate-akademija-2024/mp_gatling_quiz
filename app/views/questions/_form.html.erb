@@ -1,4 +1,4 @@
-<%= form_with(model: [question.quiz, question]) do |form| %>
+<%= form_with(model: question.persisted? ? question : [question.quiz, question]) do |form| %>
  <% if question.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(question.errors.count, "error") %> prohibited this quiz from being saved:</h2>
@@ -14,7 +14,8 @@
   <div>
     <%= form.label :question_text, style: "display: block" %>
     <%= form.text_field :question_text %>
-      <%= form.fields_for :answers do |ff|%>
+
+    <%= form.fields_for :answers do |ff|%>
       <li>
         <%= ff.label :answer_text %>
         <%= ff.text_field :answer_text %>
